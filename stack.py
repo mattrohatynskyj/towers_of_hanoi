@@ -20,13 +20,14 @@ class Stack:
     def pop(self):
         if self.size > 0:
             item_to_remove = self.top_item
-            self.top_item = item_to_remove.get_next_node()
-            self.size -= 1
-            return item_to_remove.get_value()
+            if self.top_item is not None:
+                if item_to_remove is not None:
+                    self.top_item = item_to_remove.get_next_node()
+                    return item_to_remove.get_value()
         print("This stack is totally empty.")
 
     def peek(self):
-        if self.size > 0:
+        if self.size > 0 and self.top_item is not None:
             return self.top_item.get_value()
         print("Nothing to see here!")
 
@@ -50,3 +51,14 @@ class Stack:
             pointer = pointer.get_next_node()
         print_list.reverse()
         print("{0} Stack: {1}".format(self.get_name(), print_list))
+
+
+# example
+# a = Stack("A")
+# a.push(1)
+# a.push(3)
+# a.peek()
+# a.push(5)
+# a.print_items()
+# a.pop()
+# a.print_items()
